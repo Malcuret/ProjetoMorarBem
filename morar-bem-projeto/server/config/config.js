@@ -1,14 +1,10 @@
 require('dotenv').config();
 
-module.exports = {
-  development: {
-    use_env_variable: 'DATABASE_URL',
-    dialect: 'postgres',
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false // Necessário para a conexão SSL do Supabase
-      }
-    }
-  }
+const baseConfig = {
+  use_env_variable: 'DATABASE_URL',
+  dialect: 'postgres',
+  logging: false,
+  dialectOptions: { ssl: { require: true, rejectUnauthorized: false } }
 };
+
+module.exports = { development: baseConfig, production: baseConfig };

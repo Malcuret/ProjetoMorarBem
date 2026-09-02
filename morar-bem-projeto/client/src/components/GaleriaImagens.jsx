@@ -1,0 +1,2 @@
+import { useState } from 'react';
+export default function GaleriaImagens({ imagens, titulo }) { const [atual, setAtual] = useState(0); return <section className='gallery'><img className='main-image' src={imagens[atual]} alt={titulo}/><div className='thumbnails'>{imagens.map((imagem, index) => <button type='button' key={imagem} onClick={() => setAtual(index)}><img src={imagem} alt=''/></button>)}</div></section>; }

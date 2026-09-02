@@ -1,24 +1,10 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Lead extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
-  }
+  class Lead extends Model {}
   Lead.init({
-    codigo_imovel: DataTypes.STRING,
-    telefone: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Lead',
-  });
+    codigo_imovel: { type: DataTypes.STRING, allowNull: false, validate: { notEmpty: true } },
+    telefone: { type: DataTypes.STRING, allowNull: false, validate: { notEmpty: true } }
+  }, { sequelize, modelName: 'Lead' });
   return Lead;
 };

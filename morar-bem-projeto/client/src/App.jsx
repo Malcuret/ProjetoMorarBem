@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { MainLayout } from './layouts/MainLayout';
-import { Home } from './pages/Home';
-import { Imoveis } from './pages/Imoveis';
-import { DetalhesImovel } from './pages/DetalhesImovel';
-import { NotFound } from './pages/NotFound';
+import MainLayout from './layouts/MainLayout';
+import Home from './pages/Home';
+import Imoveis from './pages/Imoveis';
+import DetalhesImovel from './pages/DetalhesImovel';
+import NotFound from './pages/NotFound';
 
 export function App() {
   return (

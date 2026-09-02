@@ -1,14 +1,2 @@
-import { useParams } from "react-router-dom";
-
-export function DetalhesImovel() {
-    const { id } = useParams();
-
-    return (
-        <div>
-            <h1>Detalhes do Imóvel</h1>
-            <p>Informações detalhadas sobre o imóvel com ID: {id}</p>
-        </div>
-    )
-};
-
-export default DetalhesImovel;
+import { useEffect, useState } from 'react'; import { useParams } from 'react-router-dom'; import { api } from '../services/api'; import GaleriaImagens from '../components/GaleriaImagens'; import FormularioLead from '../components/FormularioLead';
+export default function DetalhesImovel() { const { id } = useParams(); const [imovel, setImovel] = useState(null); const [erro, setErro] = useState(''); useEffect(() => { api.get('/imoveis/' + id).then((r) => setImovel(r.data)).catch(() => setErro('Imóvel não encontrado.')); }, [id]); if (erro) return <p>{erro}</p>; if (!imovel) return <p>Carregando imóvel...</p>; return <section className='details'><GaleriaImagens imagens={imovel.imagens} titulo={imovel.titulo}/><div><p>Código {imovel.codigo}</p><h1>{imovel.titulo}</h1><h2>R$ {imovel.preco.toLocaleString('pt-BR')}</h2><p>{imovel.descricao}</p><p>{imovel.quartos} quartos · {imovel.banheiros} banheiros · {imovel.area} m²</p><FormularioLead codigoImovel={imovel.codigo}/></div></section>; }
